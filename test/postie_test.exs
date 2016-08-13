@@ -4,7 +4,7 @@ defmodule PostieTest do
   describe "normalization" do
     test "can expand an address" do
 
-      addresses = Postie.Expand.expand_address("Quatre-vingt-douze Ave des Champs-Élysées")
+      addresses = Postie.expand_address("Quatre-vingt-douze Ave des Champs-Élysées")
       assert is_list(addresses)
       assert Enum.any?(addresses, &(&1 == "92 avenue des champs-elysees")) == true
 
@@ -23,7 +23,7 @@ defmodule PostieTest do
       ]
 
       for {input, expected_output} <- sample_data do
-        output = Postie.Expand.expand_address(input)
+        output = Postie.expand_address(input)
         assert is_list(output)
         assert Enum.any?(output, &(&1 == expected_output)) == true
       end
@@ -46,7 +46,7 @@ defmodule PostieTest do
       ]
 
       for {input_address, expected_dataset} <- example_addresses do
-        address = Postie.Parse.parse_address(input_address)
+        address = Postie.parse_address(input_address)
         assert address |> Enum.map(fn({key, _value}) -> key end) == expected_dataset
         assert address |> Enum.each(fn({_key, value}) ->
           assert is_binary(value)

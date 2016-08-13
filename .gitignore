@@ -4,6 +4,7 @@
 erl_crash.dump
 *.ez
 /priv
+/doc
 
 ### CMake ###
 CMakeCache.txt

@@ -3,8 +3,7 @@
 #include <libpostal/libpostal.h>
 
 /* During the NIF load, also load the libpostal language classifier */
-static int
-load(ErlNifEnv* env, void** priv, ERL_NIF_TERM info) {
+static int load(ErlNifEnv* env, void** priv, ERL_NIF_TERM info) {
   if (!libpostal_setup() || !libpostal_setup_language_classifier() || !libpostal_setup_parser()) {
     exit(EXIT_FAILURE);
   }
@@ -12,14 +11,12 @@ load(ErlNifEnv* env, void** priv, ERL_NIF_TERM info) {
   return 0;
 }
 
-static void
-unload(ErlNifEnv* env, void* priv) {
+static void unload(ErlNifEnv* env, void* priv) {
   libpostal_teardown();
   libpostal_teardown_language_classifier();
 }
 
-static ERL_NIF_TERM
-string_to_erl_binary(ErlNifEnv* env, char *str) {
+static ERL_NIF_TERM string_to_erl_binary(ErlNifEnv* env, char *str) {
   // Define an erlang binary
   ErlNifBinary binary_output;
   // Figure out how much data it'll carry
@@ -31,8 +28,7 @@ string_to_erl_binary(ErlNifEnv* env, char *str) {
   return enif_make_binary(env, &binary_output);
 }
 
-static ERL_NIF_TERM
-string_to_erl_atom(ErlNifEnv* env, char *name) {
+static ERL_NIF_TERM string_to_erl_atom(ErlNifEnv* env, char *name) {
   ERL_NIF_TERM atom;
   if (enif_make_existing_atom(env, name, &atom, ERL_NIF_LATIN1)) {
     return atom;
@@ -40,8 +36,7 @@ string_to_erl_atom(ErlNifEnv* env, char *name) {
   return enif_make_atom(env, name);
 }
 
-static ERL_NIF_TERM
-parse_address_func(ErlNifEnv *env, int argc, const ERL_NIF_TERM argv[]) {
+static ERL_NIF_TERM parse_address_func(ErlNifEnv *env, int argc, const ERL_NIF_TERM argv[]) {
   ErlNifBinary in_binary;
 
   if (!enif_inspect_binary(env, argv[0], &in_binary)) {
@@ -66,8 +61,7 @@ parse_address_func(ErlNifEnv *env, int argc, const ERL_NIF_TERM argv[]) {
   return enif_make_list_from_array(env, parsed_address, parsed->num_components);
 }
 
-static ERL_NIF_TERM
-expand_address_func(ErlNifEnv *env, int argc, const ERL_NIF_TERM argv[]) {
+static ERL_NIF_TERM expand_address_func(ErlNifEnv *env, int argc, const ERL_NIF_TERM argv[]) {
   ErlNifBinary in_binary;
 
   if (!enif_inspect_binary(env, argv[0], &in_binary)) {
@@ -98,8 +92,7 @@ expand_address_func(ErlNifEnv *env, int argc, const ERL_NIF_TERM argv[]) {
    in erlang, the arity of the function, the name of the corresponding C
    function, and a flag specifying whether it's a dirty nif or not.
 */
-static ErlNifFunc
-nif_funcs[] = {
+static ErlNifFunc nif_funcs[] = {
 /*{erl_function_name, erl_function_arity, c_function,          flags} */
   {"expand_address",  1,                  expand_address_func, 0    },
   {"parse_address",   1,                  parse_address_func,  0    }
@@ -112,4 +105,4 @@ nif_funcs[] = {
    simple so we can ignore them for now.
 */
 
-ERL_NIF_INIT(Elixir.Postie.Internal, nif_funcs, &load, NULL, NULL, &unload)
+ERL_NIF_INIT(Elixir.Postie, nif_funcs, &load, NULL, NULL, &unload)
