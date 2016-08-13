@@ -43,7 +43,7 @@ static ERL_NIF_TERM parse_address_func(ErlNifEnv *env, int argc, const ERL_NIF_T
     return enif_make_badarg(env);
   }
 
-  char *address = (char*) in_binary.data;
+  char *address = strndup((char*) in_binary.data, in_binary.size);
 
   address_parser_options_t options = get_libpostal_address_parser_default_options();
   address_parser_response_t *parsed = parse_address(address, options);
@@ -58,6 +58,7 @@ static ERL_NIF_TERM parse_address_func(ErlNifEnv *env, int argc, const ERL_NIF_T
 
   // Free parse result
   address_parser_response_destroy(parsed);
+  free(address);
   return enif_make_list_from_array(env, parsed_address, parsed->num_components);
 }
 
@@ -69,7 +70,7 @@ static ERL_NIF_TERM expand_address_func(ErlNifEnv *env, int argc, const ERL_NIF_
   }
 
   // Retrieve address from binary data
-  char *address = (char*) in_binary.data;
+  char *address = strndup((char*) in_binary.data, in_binary.size);
 
   size_t num_expansions;
   normalize_options_t options = get_libpostal_default_options();
@@ -83,6 +84,7 @@ static ERL_NIF_TERM expand_address_func(ErlNifEnv *env, int argc, const ERL_NIF_
   }
 
   expansion_array_destroy(expansions, num_expansions);
+  free(address);
   return enif_make_list_from_array(env, converted_expansions, num_expansions);
 }
 
