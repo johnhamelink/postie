@@ -2,7 +2,7 @@
 
 # Postie
 
-[Libpostal](https://github.com/openvenues/libpostal) NIF for Erlang
+[Libpostal](https://github.com/openvenues/libpostal) NIF for Erlang & Elixir
 
 ![Postman Pat](http://i.imgur.com/0P0Fe1F.gif)
 
