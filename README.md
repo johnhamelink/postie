@@ -22,9 +22,9 @@ NIFs have some pretty hefty downsides though - if something goes wrong with them
 
 Postie is nowhere near stable enough for use in any environment right now:
 
- - There seems to be an issue with the conversion between Erlang Binaries and UTF-8 strings
- - Because libpostal is uses NLP, it's hard to write reliable unit tests (there are some, but they pass randomly right now).
- - Because of both of these things, Postie isn't on Hex.pm yet.
+ - [ ] There seems to be an issue with the conversion between Erlang Binaries and UTF-8 strings
+ - [ ] Because libpostal is uses NLP, it's hard to write reliable unit tests (there are some, but they pass randomly right now).
+ - [ ] Because of both of these things, Postie isn't on Hex.pm yet.
 
 ## Installation
 
