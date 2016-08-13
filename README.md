@@ -2,6 +2,8 @@
 
 Libpostal NIF for Erlang
 
+![Postman Pat](http://i.imgur.com/0P0Fe1F.gif)
+
 ## Installation
 
 If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
