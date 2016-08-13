@@ -1,0 +1,2 @@
+defmodule Postie do
+end
