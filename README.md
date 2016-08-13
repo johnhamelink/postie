@@ -21,3 +21,18 @@ If [available in Hex](https://hex.pm/docs/publish), the package can be installed
         def application do
           [applications: [:postie]]
         end
+
+## Usage
+
+To parse an an address:
+
+    iex(1)> Postie.parse_address("The Book Club 100-106 Leonard St Shoreditch London EC2A 4RH, United Kingdom")
+    [house: "the book club", house_number: "100-106", road: "leonard st",
+    suburb: "shoreditch", city: "london", postcode: "ec2a 4rh",
+    country: "united kingdom"]
+    
+To expand an address:
+
+    iex(3)> Postie.expand_address("Quatre vingt douze R. de l'Église")
+    ["92 rue de l'eglise", "92 r de l'eglise", "92 rue de l eglise",
+    "92 rue de 50 eglise", "92 r de l eglise", "92 r de 50 eglise"]
