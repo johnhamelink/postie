@@ -1,6 +1,8 @@
+# WARNING: this library is not ready for use with anything important yet.
+
 # Postie
 
-Libpostal NIF for Erlang
+[Libpostal](https://github.com/openvenues/libpostal) NIF for Erlang
 
 ![Postman Pat](http://i.imgur.com/0P0Fe1F.gif)
 
