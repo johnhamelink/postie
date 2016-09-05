@@ -1,5 +1,3 @@
-# WARNING: this library is not ready for use with anything important yet.
-
 # Postie
 
 ### A [Libpostal](https://github.com/openvenues/libpostal) NIF for Erlang & Elixir
@@ -17,14 +15,6 @@ Postie is a NIF for Erlang & Elixir that allows you to use [libpostal](https://g
 NIFs (**N**ative **I**mplemented **F**unctions) are one way of integrating external code into Erlang or Elixir. Postie uses the [libpostal](https://github.com/openvenues/libpostal) C bindings to provide an interface you can use in your projects just as if it was a regular Elixir library.
 
 NIFs have some pretty hefty downsides though - if something goes wrong with them they can take down your entire erlang VM (!), and they can negatively effect the performance of your VM's scheduler. You can find out more about that in the [bitwise](https://github.com/vinoski/bitwise) project.
-
-### Why can't I use this in production yet?
-
-Postie is nowhere near stable enough for use in any environment right now:
-
- - [ ] There seems to be an issue with the conversion between Erlang Binaries and UTF-8 strings
- - [ ] Because libpostal is uses NLP, it's hard to write reliable unit tests (there are some, but they pass randomly right now).
- - [ ] Because of both of these things, Postie isn't on Hex.pm yet.
 
 ## Installation
 
