@@ -34,7 +34,7 @@ If [available in Hex](https://hex.pm/docs/publish), the package can be installed
 
 ## Usage
 
-To parse an an address:
+To parse an address:
 
     iex(1)> Postie.parse_address("The Book Club 100-106 Leonard St Shoreditch London EC2A 4RH, United Kingdom")
     [house: "the book club", house_number: "100-106", road: "leonard st",
